@@ -1,0 +1,323 @@
+{
+  "name": "data-ingestion-from-dataset",
+  "properties": {
+      "activities": [
+          {
+              "name": "ATHLETES",
+              "type": "Copy",
+              "dependsOn": [],
+              "policy": {
+                  "timeout": "0.12:00:00",
+                  "retry": 0,
+                  "retryIntervalInSeconds": 30,
+                  "secureOutput": false,
+                  "secureInput": false
+              },
+              "userProperties": [],
+              "typeProperties": {
+                  "source": {
+                      "type": "DelimitedTextSource",
+                      "storeSettings": {
+                          "type": "HttpReadSettings",
+                          "requestMethod": "GET"
+                      },
+                      "formatSettings": {
+                          "type": "DelimitedTextReadSettings"
+                      }
+                  },
+                  "sink": {
+                      "type": "DelimitedTextSink",
+                      "storeSettings": {
+                          "type": "AzureBlobFSWriteSettings"
+                      },
+                      "formatSettings": {
+                          "type": "DelimitedTextWriteSettings",
+                          "quoteAllText": true,
+                          "fileExtension": ".txt"
+                      }
+                  },
+                  "enableStaging": false,
+                  "translator": {
+                      "type": "TabularTranslator",
+                      "typeConversion": true,
+                      "typeConversionSettings": {
+                          "allowDataTruncation": true,
+                          "treatBooleanAsNumber": false
+                      }
+                  }
+              },
+              "inputs": [
+                  {
+                      "referenceName": "Athletes_Data",
+                      "type": "DatasetReference"
+                  }
+              ],
+              "outputs": [
+                  {
+                      "referenceName": "AthletesSink",
+                      "type": "DatasetReference"
+                  }
+              ]
+          },
+          {
+              "name": "COACHES",
+              "type": "Copy",
+              "dependsOn": [
+                  {
+                      "activity": "ATHLETES",
+                      "dependencyConditions": [
+                          "Completed"
+                      ]
+                  }
+              ],
+              "policy": {
+                  "timeout": "0.12:00:00",
+                  "retry": 0,
+                  "retryIntervalInSeconds": 30,
+                  "secureOutput": false,
+                  "secureInput": false
+              },
+              "userProperties": [],
+              "typeProperties": {
+                  "source": {
+                      "type": "DelimitedTextSource",
+                      "storeSettings": {
+                          "type": "HttpReadSettings",
+                          "requestMethod": "GET"
+                      },
+                      "formatSettings": {
+                          "type": "DelimitedTextReadSettings"
+                      }
+                  },
+                  "sink": {
+                      "type": "DelimitedTextSink",
+                      "storeSettings": {
+                          "type": "AzureBlobFSWriteSettings"
+                      },
+                      "formatSettings": {
+                          "type": "DelimitedTextWriteSettings",
+                          "quoteAllText": true,
+                          "fileExtension": ".txt"
+                      }
+                  },
+                  "enableStaging": false,
+                  "translator": {
+                      "type": "TabularTranslator",
+                      "typeConversion": true,
+                      "typeConversionSettings": {
+                          "allowDataTruncation": true,
+                          "treatBooleanAsNumber": false
+                      }
+                  }
+              },
+              "inputs": [
+                  {
+                      "referenceName": "Coaches_Data",
+                      "type": "DatasetReference"
+                  }
+              ],
+              "outputs": [
+                  {
+                      "referenceName": "CoachesSink",
+                      "type": "DatasetReference"
+                  }
+              ]
+          },
+          {
+              "name": "GENDER",
+              "type": "Copy",
+              "dependsOn": [
+                  {
+                      "activity": "COACHES",
+                      "dependencyConditions": [
+                          "Completed"
+                      ]
+                  }
+              ],
+              "policy": {
+                  "timeout": "0.12:00:00",
+                  "retry": 0,
+                  "retryIntervalInSeconds": 30,
+                  "secureOutput": false,
+                  "secureInput": false
+              },
+              "userProperties": [],
+              "typeProperties": {
+                  "source": {
+                      "type": "DelimitedTextSource",
+                      "storeSettings": {
+                          "type": "HttpReadSettings",
+                          "requestMethod": "GET"
+                      },
+                      "formatSettings": {
+                          "type": "DelimitedTextReadSettings"
+                      }
+                  },
+                  "sink": {
+                      "type": "DelimitedTextSink",
+                      "storeSettings": {
+                          "type": "AzureBlobFSWriteSettings"
+                      },
+                      "formatSettings": {
+                          "type": "DelimitedTextWriteSettings",
+                          "quoteAllText": true,
+                          "fileExtension": ".txt"
+                      }
+                  },
+                  "enableStaging": false,
+                  "translator": {
+                      "type": "TabularTranslator",
+                      "typeConversion": true,
+                      "typeConversionSettings": {
+                          "allowDataTruncation": true,
+                          "treatBooleanAsNumber": false
+                      }
+                  }
+              },
+              "inputs": [
+                  {
+                      "referenceName": "Gender_Data",
+                      "type": "DatasetReference"
+                  }
+              ],
+              "outputs": [
+                  {
+                      "referenceName": "Gender_Sink",
+                      "type": "DatasetReference"
+                  }
+              ]
+          },
+          {
+              "name": "MEDALS",
+              "type": "Copy",
+              "dependsOn": [
+                  {
+                      "activity": "GENDER",
+                      "dependencyConditions": [
+                          "Completed"
+                      ]
+                  }
+              ],
+              "policy": {
+                  "timeout": "0.12:00:00",
+                  "retry": 0,
+                  "retryIntervalInSeconds": 30,
+                  "secureOutput": false,
+                  "secureInput": false
+              },
+              "userProperties": [],
+              "typeProperties": {
+                  "source": {
+                      "type": "DelimitedTextSource",
+                      "storeSettings": {
+                          "type": "HttpReadSettings",
+                          "requestMethod": "GET"
+                      },
+                      "formatSettings": {
+                          "type": "DelimitedTextReadSettings"
+                      }
+                  },
+                  "sink": {
+                      "type": "DelimitedTextSink",
+                      "storeSettings": {
+                          "type": "AzureBlobFSWriteSettings"
+                      },
+                      "formatSettings": {
+                          "type": "DelimitedTextWriteSettings",
+                          "quoteAllText": true,
+                          "fileExtension": ".txt"
+                      }
+                  },
+                  "enableStaging": false,
+                  "translator": {
+                      "type": "TabularTranslator",
+                      "typeConversion": true,
+                      "typeConversionSettings": {
+                          "allowDataTruncation": true,
+                          "treatBooleanAsNumber": false
+                      }
+                  }
+              },
+              "inputs": [
+                  {
+                      "referenceName": "Medals_Data",
+                      "type": "DatasetReference"
+                  }
+              ],
+              "outputs": [
+                  {
+                      "referenceName": "Medals_Sink",
+                      "type": "DatasetReference"
+                  }
+              ]
+          },
+          {
+              "name": "TEAMS",
+              "type": "Copy",
+              "dependsOn": [
+                  {
+                      "activity": "MEDALS",
+                      "dependencyConditions": [
+                          "Completed"
+                      ]
+                  }
+              ],
+              "policy": {
+                  "timeout": "0.12:00:00",
+                  "retry": 0,
+                  "retryIntervalInSeconds": 30,
+                  "secureOutput": false,
+                  "secureInput": false
+              },
+              "userProperties": [],
+              "typeProperties": {
+                  "source": {
+                      "type": "DelimitedTextSource",
+                      "storeSettings": {
+                          "type": "HttpReadSettings",
+                          "requestMethod": "GET"
+                      },
+                      "formatSettings": {
+                          "type": "DelimitedTextReadSettings"
+                      }
+                  },
+                  "sink": {
+                      "type": "DelimitedTextSink",
+                      "storeSettings": {
+                          "type": "AzureBlobFSWriteSettings"
+                      },
+                      "formatSettings": {
+                          "type": "DelimitedTextWriteSettings",
+                          "quoteAllText": true,
+                          "fileExtension": ".txt"
+                      }
+                  },
+                  "enableStaging": false,
+                  "translator": {
+                      "type": "TabularTranslator",
+                      "typeConversion": true,
+                      "typeConversionSettings": {
+                          "allowDataTruncation": true,
+                          "treatBooleanAsNumber": false
+                      }
+                  }
+              },
+              "inputs": [
+                  {
+                      "referenceName": "Teams_Data",
+                      "type": "DatasetReference"
+                  }
+              ],
+              "outputs": [
+                  {
+                      "referenceName": "Teams_Sink",
+                      "type": "DatasetReference"
+                  }
+              ]
+          }
+      ],
+      "annotations": [],
+      "lastPublishTime": "2024-01-08T12:17:30Z"
+  },
+  "type": "Microsoft.DataFactory/factories/pipelines"
+}
