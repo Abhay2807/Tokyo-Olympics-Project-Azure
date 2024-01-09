@@ -14,6 +14,8 @@ In this project, I have, extracted the data (Tokyo Olympics 2021) from the API (
 
 ![image](https://github.com/Abhay2807/Tokyo-Olympics-Project-Azure/assets/76277587/941e61fa-d30d-4cf4-b140-a27cd42834b7)
 
+![image](https://github.com/Abhay2807/Tokyo-Olympics-Project-Azure/assets/76277587/c03c8195-21a3-40d7-9686-8b6fb88860a2)
+
 ![image](https://github.com/Abhay2807/Tokyo-Olympics-Project-Azure/assets/76277587/2db331e1-8806-46e2-bc2f-ae1f301b41c0)
 
 ![image](https://github.com/Abhay2807/Tokyo-Olympics-Project-Azure/assets/76277587/3049c07e-8284-4766-a79b-889bf158cb2a)
