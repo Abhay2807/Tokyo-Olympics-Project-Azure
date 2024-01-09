@@ -1,7 +1,7 @@
 # Tokyo-Olympics-Project-Azure
 
 
-In this project, I have, extracted the data (Tokyo Olympics 2021) from the API (Kaggle.com) using Azure Data Factory and then loaded this raw data into Azure Data Lake storage (ADLS). After this, I used Azure Data Bricks where I transformed my raw data present in ADLS using Aparche spark and then loaded this transformed data back into our ADLS along with some additional transformed files. Finally, I have used Azure Synapse Analytics to run the SQL queries on top of the transformed data to get the desired output and visualization using charts.
+In this project, I have, extracted the data (Tokyo Olympics 2021) from the API (Kaggle.com) using Azure Data Factory and then loaded this raw data into Azure Data Lake storage (ADLS). After this, I used Azure Data Bricks where I transformed my raw data present in ADLS using Aparche spark and then loaded this transformed data back into the ADLS along with some additional transformed files. Finally, I have used Azure Synapse Analytics to run the SQL queries on top of the transformed data to get the desired output and visualization using charts.
 
 
 
